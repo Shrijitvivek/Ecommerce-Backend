@@ -4,22 +4,33 @@ const prodSchema = new mongoose.Schema({
 
     ProductName:{
         type:String,
-        required:true
+        
     },
 
     Price:{
-        type:String,
-        required:true
+        type:Number,
+        
     },
 
     Category:{
-         type:String,
-        required:true
+        type:mongoose.Types.ObjectId,
+       
     },
 
     ProductImage:{
          type:String,
-        required:true
+       
+    },
+
+    Stock:
+    {
+        type:Number,
+       
+    },
+
+    Description:{
+        type:String,
+       
     }
 })
 

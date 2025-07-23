@@ -36,13 +36,26 @@ const login = async (req, res) => {
 
   if(passwordMatched) {
     req.session.user = {
+       id: userFound._id,
     name: userFound.name,
-    email: userFound.email,
-    phone: userFound.phone,
+    email: userFound.email
+   
   }
   res.json({message:"User logged in"})
   }
 }
 
-export {register,login}
+const lout = async (req,res)=>{
+  req.session.destroy ((err)=>{
+    if(err){
+      res.json({message:"Session could not be destroyed"})
+    }
+    else{
+      res.json({message:'User logged out , Session destroyed'})
+    }
+  })
+}
+
+
+export {register,login,lout}
 

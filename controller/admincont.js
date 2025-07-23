@@ -28,4 +28,15 @@ const adlogin = async (req, res) => {
   }
 }
 
-export {adlogin}
+const adlout = async (req,res)=>{
+  req.session.destroy ((err)=>{
+    if(err){
+      res.json({message:"Session could not be destroyed"})
+    }
+    else{
+      res.json({message:'Admin logged out , Session destroyed'})
+    }
+  })
+}
+ 
+export {adlogin,adlout}

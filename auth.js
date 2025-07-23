@@ -15,6 +15,8 @@ async function addCat(){
     catch(error){
         console.log(error);
         
+
+        
     }
    
 }
