@@ -24,7 +24,7 @@ app.use(session({
 }))
 
 app.use('',router)
-app.use('',adrouter)
+app.use('/admin',adrouter)
 
 
 

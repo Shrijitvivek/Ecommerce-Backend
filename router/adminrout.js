@@ -3,12 +3,11 @@ import multer from 'multer';
 import path from 'path';
 import {
   addprod,
-  getprod,
+  getprodadm,
   updprod,
-  delprod,
-  getprodid
+  delprod
 } from '../controller/prodcont.js';
-import { adlogin,adlout } from '../controller/admincont.js';
+import { adlogin,adlout,getUser } from '../controller/admincont.js';
 import {showcat,addcat,delcat,updcat,userShowCat} from '../controller/catcont.js'
 
 const adrouter = express.Router();
@@ -25,9 +24,10 @@ const storage = multer.diskStorage({
 
 const produpl = multer({ storage });
 
-// Admin  routes
-adrouter.post('/admin/login', adlogin);
-adrouter.get("/admin/logout",adlout)
+
+adrouter.post('/login', adlogin);
+
+
 
 adrouter.use((req,res,next)=>{
   if(req.session.admin){
@@ -39,16 +39,25 @@ adrouter.use((req,res,next)=>{
 })
 
 // Product CRUD routes
-adrouter.post('/admin/products', produpl.single('ProductImage'), addprod);       
-adrouter.get('/admin/products', getprod);                                   
-adrouter.put('/admin/products/:id', produpl.single('ProductImage'), updprod); 
-adrouter.get('/admin/products/:id',getprodid)
-adrouter.delete('/admin/products/:id', delprod);    
+adrouter.get('/products', getprodadm);  
+
+adrouter.post('/products', produpl.single('ProductImage'), addprod);       
+                                 
+adrouter.put('/products/:id', produpl.single('ProductImage'), updprod); 
+
+adrouter.delete('/products/:id', delprod);    
 
 // Category CRUD routes
-adrouter.get('/admin/categories',showcat)
-adrouter.post('/admin/categories',addcat)
-adrouter.put('/admin/categories/id',updcat)
-adrouter.delete('/admin/categories/id',delcat)
+adrouter.get('/categories',showcat)
+
+adrouter.post('/categories',addcat)
+
+adrouter.put('/categories/id',updcat)
+
+adrouter.delete('/categories/id',delcat)
+
+adrouter.get('/users',getUser)
+
+adrouter.get("/logout",adlout)
 
 export default adrouter;

@@ -45,6 +45,7 @@ const login = async (req, res) => {
   }
 }
 
+
 const lout = async (req,res)=>{
   req.session.destroy ((err)=>{
     if(err){

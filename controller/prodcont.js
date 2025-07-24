@@ -27,7 +27,7 @@ const addprod = async (req, res) => {
 }
 
 // READ 
-const getprod = async (req, res) => {
+const getprodadm = async (req, res) => {
   try {
     const products = await prodModel.find();
     res.json({ products });
@@ -36,7 +36,16 @@ const getprod = async (req, res) => {
   }
 }
 
-const getprodid = async (req, res) => {
+const getproduser = async (req, res) => {
+  try {
+    const products = await prodModel.find();
+    res.json({ products });
+  } catch (error) {
+    res.json({ error: "Failed to fetch products"});
+  }
+}
+
+const getprodiduser = async (req, res) => {
   try {
     const product = await prodModel.findById(req.params.id);
     if (!product) return res.json({ error: "Product not found" });
@@ -88,8 +97,9 @@ const delprod = async (req, res) => {
 
 export {
   addprod,
-  getprod,
+  getprodadm,
   updprod,
   delprod,
-  getprodid
+  getproduser,
+  getprodiduser
 }
