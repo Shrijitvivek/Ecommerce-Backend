@@ -16,23 +16,29 @@ const addcat = async (req, res) => {
 
 const updcat = async (req, res) => {
     try {
-        const { name, description } = req.body
-        const old = await categoryModel.findById(req.params.id)
+        const { name, description } = req.body;
+
+        const old = await categoryModel.findById(req.params.id);
+        if (!old) {
+            return res.status(404).json({ message: "Category not found" });
+        }
+
         const dataToSet = {
             name: old.name,
             description: old.description
-        }
-        if (req.body.name) { dataToSet.name = req.body.name }
-        if (req.body.description) { dataToSet.description = req.body.description }
+        };
 
-        const updated = await categoryModel.findByIdAndUpdate(req.params.id, dataToSet)
-        res.json({ updated })
+        if (name) dataToSet.name = name;
+        if (description) dataToSet.description = description;
+
+        const updated = await categoryModel.findByIdAndUpdate( req.params.id,dataToSet, { new: true } );
+
+        res.json({ updated });
     } catch (err) {
-        res.json({ message: err })
+        res.status(500).json({ message: err.message });
     }
+};
 
-
-}
 
 const delcat = async (req, res) => {
     try {

@@ -25,13 +25,13 @@ const login = async (req, res) => {
   const userFound = await userModel.findOne({ email });
 
   if (!userFound){
-   res.json({message:'User not found'})
+   return res.json({message:'User not found'})
   }
 
 
   const passwordMatched = await bcrypt.compare(password, userFound.password);
   if (!passwordMatched){
-   res.json({message:'Incorrect paswword'})
+   return res.json({message:'Incorrect paswword'})
   }
 
   if(passwordMatched) {
@@ -41,21 +41,20 @@ const login = async (req, res) => {
     email: userFound.email
    
   }
-  res.json({message:"User logged in"})
+ return res.json({message:"User logged in"})
   }
 }
 
 
 const lout = async (req,res)=>{
-  req.session.destroy ((err)=>{
-    if(err){
-      res.json({message:"Session could not be destroyed"})
+ req.session.user = null
+  if(req.session.user === null){
+       res.json({ message: 'User logged out ' })
     }
-    else{
-      res.json({message:'User logged out , Session destroyed'})
+    else {
+      res.json({ message: "Failed to logout" })
     }
-  })
-}
+  }
 
 
 export {register,login,lout}

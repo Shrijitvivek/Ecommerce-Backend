@@ -9,13 +9,13 @@ const adlogin = async (req, res) => {
   const adminFound = await adminModel.findOne({ email });
 
   if (!adminFound) {
-    res.json({ message: ' not found' })
+   return res.json({ message: ' not found' })
   }
 
 
   const passwordMatched = await bcrypt.compare(password, adminFound.password);
   if (!passwordMatched) {
-    res.json({ message: 'Incorrect paswword' })
+    return res.json({ message: 'Incorrect paswword' })
   }
 
   if (passwordMatched) {
@@ -23,7 +23,7 @@ const adlogin = async (req, res) => {
       email: adminFound.email,
       id: adminFound.id
     }
-    res.json({ message: "admin logged in" })
+   return res.json({ message: "admin logged in" })
   }
 }
 
@@ -41,14 +41,13 @@ const getUser = async (req, res) => {
 }
 
 const adlout = async (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      res.json({ message: "Session could not be destroyed" })
+  req.session.admin = null
+  if(req.session.admin === null){
+       res.json({ message: 'Admin logged out ' })
     }
     else {
-      res.json({ message: 'Admin logged out , Session destroyed' })
+      res.json({ message: "Failed to logout" })
     }
-  })
-}
+  }
 
 export { adlogin, adlout, getUser }

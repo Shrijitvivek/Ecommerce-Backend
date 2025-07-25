@@ -52,9 +52,9 @@ adrouter.get('/categories',showcat)
 
 adrouter.post('/categories',addcat)
 
-adrouter.put('/categories/id',updcat)
+adrouter.put('/categories/:id',updcat)
 
-adrouter.delete('/categories/id',delcat)
+adrouter.delete('/categories/:id',delcat)
 
 adrouter.get('/users',getUser)
 

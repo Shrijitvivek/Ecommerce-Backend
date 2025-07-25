@@ -23,8 +23,8 @@ app.use(session({
 
 }))
 
-app.use('',router)
 app.use('/admin',adrouter)
+app.use('/user',router)
 
 
 
