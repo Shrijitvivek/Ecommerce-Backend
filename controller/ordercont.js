@@ -43,6 +43,8 @@ import OrderModel from "../models/ordersch.js";
  const getadm = async (req, res) => {
   try {
     const orders = await OrderModel.find();
+    console.log(orders);
+    
     res.json(orders);
   } catch (err) {
     res.json({ error: "Failed to fetch orders" });
