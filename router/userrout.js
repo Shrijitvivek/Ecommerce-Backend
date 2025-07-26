@@ -3,6 +3,7 @@ import {register,login,lout} from '../controller/usercont.js'
 import{getproduser,getprodiduser} from '../controller/prodcont.js'
 import { userShowCat } from '../controller/catcont.js'
 import { addcart ,Total , editcart , delcart} from '../controller/cartcont.js'
+import { addOrder,getIduser,getsuser } from '../controller/ordercont.js'
 import multer from 'multer'
 import path from 'path'
  
@@ -46,9 +47,19 @@ router.use((req,res,next)=>{
 
 
 router.post('/cart',addcart)
+
 router.get('/cart',Total)
+
 router.put('/cart/:id',editcart)
+
 router.delete('/cart/:id',delcart)
+
 router.get('/logout',lout)
+
+router.post("/orders",addOrder)
+
+router.get('/orders',getsuser)
+
+router.get('/orders/:id',getIduser)
 
 export default router

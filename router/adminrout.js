@@ -9,6 +9,7 @@ import {
 } from '../controller/prodcont.js';
 import { adlogin,adlout,getUser } from '../controller/admincont.js';
 import {showcat,addcat,delcat,updcat,userShowCat} from '../controller/catcont.js'
+import { updOrder,delOrder,getadm } from '../controller/ordercont.js';
 
 const adrouter = express.Router();
 
@@ -59,5 +60,12 @@ adrouter.delete('/categories/:id',delcat)
 adrouter.get('/users',getUser)
 
 adrouter.get("/logout",adlout)
+
+// Order routes
+adrouter.get('/orders',getadm)
+
+adrouter.put('/orders/:id',updOrder)
+
+adrouter.delete('/ordrs/:id',delOrder)
 
 export default adrouter;
