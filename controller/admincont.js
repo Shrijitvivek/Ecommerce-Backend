@@ -23,14 +23,14 @@ const adlogin = async (req, res) => {
       email: adminFound.email,
       id: adminFound.id
     }
-   return res.json({ message: "admin logged in" })
+   return res.json({ message: "admin logged in",message1:true })
   }
 }
 
 const getUser = async (req, res) => {
   try {
     const find = await userModel.find()
-    res.json(find)
+    res.json({users:find})
   }
 
   catch (err) {

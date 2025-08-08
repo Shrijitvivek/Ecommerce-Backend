@@ -45,6 +45,37 @@ const login = async (req, res) => {
   }
 }
 
+ const editUser = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const oldUser = await userModel.findById(userId);
+    if (!oldUser) {
+      return res.status(404).json({ message: "user Not found" });
+    }
+    const dataToBeUpdated = {
+      name: oldUser.name,
+      email: oldUser.email,
+      image: oldUser.image,
+    };
+
+    if (req.body.name) {
+      dataToBeUpdated.name = req.body.name;
+    }
+    if (req.body.email) {
+      dataToBeUpdated.email = req.body.email;
+    }
+    if (req.file) {
+      dataToBeUpdated.image = req.file.filename;
+    }
+    const updatedUser = await userModel.findByIdAndUpdate(
+      userId,
+      dataToBeUpdated
+    );
+    res.json({ message: "User details updated", updatedUser });
+  } catch (err) {
+    res.status(500).json({ message: "somthing wrong" });
+  }
+};
 
 const lout = async (req,res)=>{
  req.session.user = null
@@ -57,5 +88,5 @@ const lout = async (req,res)=>{
   }
 
 
-export {register,login,lout}
+export {register,login,editUser,lout}
 

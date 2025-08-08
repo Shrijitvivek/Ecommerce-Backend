@@ -30,14 +30,19 @@ adrouter.post('/login', adlogin);
 
 
 
-adrouter.use((req,res,next)=>{
-  if(req.session.admin){
-    next()
+adrouter.use((req, res, next) => {
+  const openRoutes = ['/login', '/logout'];
+  if (openRoutes.includes(req.path)) {
+    return next();
   }
-  else{
-    res.json('admin not logged in ')
+
+  if (req.session && req.session.admin) {
+    return next();
   }
-})
+
+  return res.status(401).json({ success: false, message: 'Admin not logged in' });
+});
+
 
 // Product CRUD routes
 adrouter.get('/products', getprodadm);  

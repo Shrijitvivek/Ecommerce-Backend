@@ -72,7 +72,7 @@ const delcart = async (req, res) => {
         }
 
         const originalLength = cart.Items.length;
-        cart.Items = cart.Items.filter(i => !i.ProductId.equals(objectProductId));
+        cart.Items = cart.Items.filter(i => i.ProductId.equals(objectProductId));
 
         if (cart.Items.length === originalLength) {
             return res.status(404).json("Item not found in cart");

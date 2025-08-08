@@ -1,5 +1,5 @@
 import express from 'express'
-import {register,login,lout} from '../controller/usercont.js'
+import {register,login,editUser,lout} from '../controller/usercont.js'
 import{getproduser,getprodiduser} from '../controller/prodcont.js'
 import { userShowCat } from '../controller/catcont.js'
 import { addcart ,Total , editcart , delcart} from '../controller/cartcont.js'
@@ -47,6 +47,8 @@ router.use((req,res,next)=>{
 
 
 router.post('/cart',addcart)
+
+router.put('/edit/:id',upload.single("image"),editUser)
 
 router.get('/cart',Total)
 
