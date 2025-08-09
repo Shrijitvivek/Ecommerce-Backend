@@ -5,7 +5,8 @@ import {
   addprod,
   getprodadm,
   updprod,
-  delprod
+  delprod,
+  getprodidadm
 } from '../controller/prodcont.js';
 import { adlogin,adlout,getUser } from '../controller/admincont.js';
 import {showcat,addcat,delcat,updcat,userShowCat} from '../controller/catcont.js'
@@ -46,6 +47,8 @@ adrouter.use((req, res, next) => {
 
 // Product CRUD routes
 adrouter.get('/products', getprodadm);  
+
+adrouter.get('/products/:id',getprodidadm)
 
 adrouter.post('/products', produpl.single('ProductImage'), addprod);       
                                  

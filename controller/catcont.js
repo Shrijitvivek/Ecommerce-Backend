@@ -56,7 +56,7 @@ const delcat = async (req, res) => {
 const showcat = async (req, res) => {
     try {
         const all = await categoryModel.find()
-        res.json({ all })
+        res.json({ categories:all })
 
     } catch (err) {
         res.json({ err })

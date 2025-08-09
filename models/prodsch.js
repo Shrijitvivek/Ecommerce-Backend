@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+import { ref } from "process"
 
 const prodSchema = new mongoose.Schema({
 
@@ -14,6 +15,7 @@ const prodSchema = new mongoose.Schema({
 
     Category:{
         type:mongoose.Types.ObjectId,
+        ref:'Category'
        
     },
 

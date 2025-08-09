@@ -22,6 +22,8 @@ const addprod = async (req, res) => {
 
     res.json({ message: "Product Added", product: proddet })
   } catch (error) {
+    console.log(error);
+    
     res.json({ error: "Failed to add product" })
   }
 }
@@ -29,12 +31,24 @@ const addprod = async (req, res) => {
 // READ 
 const getprodadm = async (req, res) => {
   try {
-    const products = await prodModel.find();
+    const products = await prodModel.find().populate('Category' , 'name')
     res.json({ products });
   } catch (error) {
     res.json({ error: "Failed to fetch products"});
   }
 }
+
+
+const getprodidadm = async (req, res) => {
+  try {
+    const product = await prodModel.findById(req.params.id)
+      .populate('Category', 'name');
+    if (!product) return res.json({ error: "Product not found" });
+    res.json({ product });
+  } catch (error) {
+    res.json({ error: "Error fetching product" });
+  }
+};
 
 const getproduser = async (req, res) => {
   try {
@@ -98,6 +112,7 @@ const delprod = async (req, res) => {
 export {
   addprod,
   getprodadm,
+  getprodidadm,
   updprod,
   delprod,
   getproduser,
