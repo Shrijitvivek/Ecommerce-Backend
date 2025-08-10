@@ -1,6 +1,19 @@
 import categoryModel from "../models/catsch.js"
 import productModel from "../models/prodsch.js";
 
+const getCategoryById = async (req, res) => {
+    try {
+        const category = await categoryModel.findById(req.params.id);
+        if (!category) {
+            return res.status(404).json({ message: "Category not found" });
+        }
+        res.json({ category });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+
 
 const addcat = async (req, res) => {
     console.log(req.body);
@@ -77,4 +90,4 @@ const userShowCat = async (req, res) => {
 
 }
 
-export { showcat, delcat, updcat, addcat, userShowCat }
+export { showcat, delcat, updcat, addcat, userShowCat , getCategoryById}

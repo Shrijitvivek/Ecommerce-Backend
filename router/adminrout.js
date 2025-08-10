@@ -9,7 +9,7 @@ import {
   getprodidadm
 } from '../controller/prodcont.js';
 import { adlogin,adlout,getUser } from '../controller/admincont.js';
-import {showcat,addcat,delcat,updcat,userShowCat} from '../controller/catcont.js'
+import {showcat,addcat,delcat,updcat,userShowCat, getCategoryById} from '../controller/catcont.js'
 import { updOrder,delOrder,getadm } from '../controller/ordercont.js';
 
 const adrouter = express.Router();
@@ -58,6 +58,8 @@ adrouter.delete('/products/:id', delprod);
 
 // Category CRUD routes
 adrouter.get('/categories',showcat)
+
+adrouter.get('/categories/:id',getCategoryById)
 
 adrouter.post('/categories',addcat)
 
