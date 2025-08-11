@@ -56,7 +56,7 @@ const updcat = async (req, res) => {
 const delcat = async (req, res) => {
     try {
         const categoryId = req.params.id
-        await productModel.deleteMany({ productCategory: categoryId })
+        await productModel.deleteMany({ Category: categoryId })
         await categoryModel.deleteOne({ _id: categoryId })
 
         res.json({ message: "Deleted all the category and the respective products" })
