@@ -4,15 +4,22 @@ import OrderModel from "../models/ordersch.js";
 import userModel from "../models/usersch.js";
 
 // CREATE Order
+
+
+
+
 export const addOrder = async (req, res) => {
   try {
     const userId = req.session.user.id;
+
     const cart = await cartModel.findOne({ UserId: userId });
 
-    if (!cart) return res.json({ message: "Cart is empty" });
+    if (!cart || cart.Items.length === 0) {
+      return res.status(400).json({ message: "Cart is empty" });
+    }
 
     let total = 0;
-    const items = [];
+    const orderItems = [];
 
     for (let item of cart.Items) {
       const product = await productModel.findById(item.ProductId);
@@ -21,7 +28,7 @@ export const addOrder = async (req, res) => {
       const subtotal = product.Price * item.Quantity;
       total += subtotal;
 
-      items.push({
+      orderItems.push({
         ProductName: product.ProductName,
         Price: product.Price,
         Quantity: item.Quantity,
@@ -29,22 +36,26 @@ export const addOrder = async (req, res) => {
       });
     }
 
-    await OrderModel.create({
+    const newOrder = new OrderModel({
       UserId: userId,
-      Items: items,
+      Items: orderItems,
       Total: total,
-      DeliveryStatus: "Pending"
+      DeliveryStatus: "pending"
     });
+
+    await newOrder.save();
 
     await cartModel.deleteOne({ UserId: userId });
 
-    res.json({ message: "Order placed" });
+    res.json({ message: "Order placed successfully", order: newOrder });
   } catch (err) {
-    res.status(500).json({ error: "Error placing order" });
+    console.error("Error placing order:", err);
+    res.status(500).json({ message: "Server error", error: err.message });
   }
 };
 
-// READ - Admin
+     
+
 export const getadm = async (req, res) => {
   try {
     const orders = await OrderModel.find();
