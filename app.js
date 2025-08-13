@@ -13,7 +13,7 @@ const app = express()
 app.use(express.static('prodimg'))
 app.use(express.static('upload'))
 app.use(cors({
-    origin:'http://localhost:5174',
+    origin:'http://localhost:5173',
     credentials:true
 }))
 
