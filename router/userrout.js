@@ -1,7 +1,7 @@
 import express from 'express'
 import {register,login,editUser,lout} from '../controller/usercont.js'
 import{getproduser,getprodiduser} from '../controller/prodcont.js'
-import { userShowCat } from '../controller/catcont.js'
+import { userShowCat , getProductsByCategory } from '../controller/catcont.js'
 import { addcart ,Total , editcart , delcart} from '../controller/cartcont.js'
 import { addOrder,getIduser,getsuser } from '../controller/ordercont.js'
 import multer from 'multer'
@@ -31,6 +31,8 @@ router.get('/products',getproduser)
 router.get('/products/:id',getprodiduser)
 
 router.get('/categories',userShowCat)
+
+router.get('/products/categories/:id',getProductsByCategory)
 
 
 

@@ -13,6 +13,16 @@ const getCategoryById = async (req, res) => {
     }
 };
 
+const getProductsByCategory = async (req, res) => {
+  try {
+    const products = await productModel.find({ Category: req.params.id });
+    res.json({ products });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+
 
 
 const addcat = async (req, res) => {
@@ -90,4 +100,4 @@ const userShowCat = async (req, res) => {
 
 }
 
-export { showcat, delcat, updcat, addcat, userShowCat , getCategoryById}
+export { showcat, delcat, updcat, addcat, userShowCat , getCategoryById, getProductsByCategory}
