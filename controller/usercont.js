@@ -77,6 +77,15 @@ const login = async (req, res) => {
   }
 };
 
+const checkAuth = (req, res) => {
+  if (req.session && req.session.user) {
+    return res.json({ loggedIn: true, user: req.session.user });
+  } else {
+    return res.json({ loggedIn: false });
+  }
+};
+
+
 const lout = async (req,res)=>{
  req.session.user = null
   if(req.session.user === null){
@@ -88,5 +97,5 @@ const lout = async (req,res)=>{
   }
 
 
-export {register,login,editUser,lout}
+export {register,login,editUser,lout,checkAuth}
 

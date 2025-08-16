@@ -1,5 +1,5 @@
 import express from 'express'
-import {register,login,editUser,lout} from '../controller/usercont.js'
+import {register,login,editUser,lout,checkAuth} from '../controller/usercont.js'
 import{getproduser,getprodiduser} from '../controller/prodcont.js'
 import { userShowCat , getProductsByCategory } from '../controller/catcont.js'
 import { addcart ,Total , editcart , delcart} from '../controller/cartcont.js'
@@ -25,6 +25,8 @@ const upload = multer({storage})
 router.post('/register',upload.single('image'),register)
 
 router.post('/login',login)
+
+router.get('/auth/check',checkAuth)
 
 router.get('/products',getproduser)
 
