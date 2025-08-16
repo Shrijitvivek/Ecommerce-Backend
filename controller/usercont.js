@@ -38,7 +38,8 @@ const login = async (req, res) => {
     req.session.user = {
        id: userFound._id,
     name: userFound.name,
-    email: userFound.email
+    email: userFound.email,
+    image : userFound.image
    
   }
  return res.json({message:"User logged in"})

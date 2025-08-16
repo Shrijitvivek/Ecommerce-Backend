@@ -11,7 +11,7 @@ dotenv.config()
 
 const app = express()
 app.use(express.static('prodimg'))
-app.use(express.static('upload'))
+app.use('/upload' , express.static('upload'))
 app.use(cors({
     origin:'http://localhost:5173',
     credentials:true
