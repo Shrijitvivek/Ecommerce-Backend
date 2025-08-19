@@ -10,7 +10,7 @@ dotenv.config()
 
 
 const app = express()
-app.use(express.static('prodimg'))
+app.use( express.static('prodimg'))
 app.use('/upload' , express.static('upload'))
 app.use(cors({
     origin:'http://localhost:5173',
@@ -24,9 +24,9 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: false,        // true if using HTTPS
+    secure: false,        
     httpOnly: true,
-    sameSite: 'lax'       // or 'none' if using HTTPS
+    sameSite: 'lax'       
   },
   store: MongoStore.create({
     mongoUrl: 'mongodb://localhost:27017/BackendEcommerce',

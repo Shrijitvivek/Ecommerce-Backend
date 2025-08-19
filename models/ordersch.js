@@ -33,8 +33,10 @@ const orderSchema = new mongoose.Schema({
     DeliveryStatus :{
       type:String,
       default:"pending"
-    }
-})
+    },
+   
+},
+{timestamps : true})
 
 const OrderModel = mongoose.model("od",orderSchema,"Orders")
 export default OrderModel
