@@ -40,7 +40,7 @@ export const addOrder = async (req, res) => {
       UserId: userId,
       Items: orderItems,
       Total: total,
-      DeliveryStatus: "pending"
+      DeliveryStatus: "Pending"
     });
 
     await newOrder.save();

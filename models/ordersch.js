@@ -32,7 +32,7 @@ const orderSchema = new mongoose.Schema({
 
     DeliveryStatus :{
       type:String,
-      default:"pending"
+      default:"Pending"
     },
    
 },
