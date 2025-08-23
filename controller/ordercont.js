@@ -58,7 +58,7 @@ export const addOrder = async (req, res) => {
 
 export const getadm = async (req, res) => {
   try {
-    const orders = await OrderModel.find();
+    const orders = await OrderModel.find().sort({ createdAt: -1 }); 
     const ordersWithUsernames = [];
 
     for (let order of orders) {
@@ -75,18 +75,20 @@ export const getadm = async (req, res) => {
   }
 };
 
-// READ - Single user all orders
+
 export const getsuser = async (req, res) => {
   try {
     const userId = req.session.user.id;
-    const orders = await OrderModel.find({ UserId: userId });
+    const orders = await OrderModel.find({ UserId: userId }).sort({createdAt:-1})
+
+
     res.json(orders);
   } catch (err) {
     res.status(500).json({ error: "Error fetching user's orders" });
   }
 };
 
-// READ - Single order of a user
+
 export const getIduser = async (req, res) => {
   try {
     const userId = req.session.user.id;
@@ -100,7 +102,6 @@ export const getIduser = async (req, res) => {
   }
 };
 
-// UPDATE delivery status
 export const updOrder = async (req, res) => {
   try {
     const { deliveryStatus } = req.body;
@@ -118,7 +119,7 @@ export const updOrder = async (req, res) => {
   }
 };
 
-// DELETE order
+
 export const delOrder = async (req, res) => {
   try {
     const deleted = await OrderModel.findByIdAndDelete(req.params.id);
