@@ -28,6 +28,10 @@ const login = async (req, res) => {
     return res.json({ message: 'User not found' })
   }
 
+  if (!userFound.status) {
+    return res.status(403).json({ message: 'Your account is disabled. Contact admin.' });
+  }
+
 
   const passwordMatched = await bcrypt.compare(password, userFound.password);
   if (!passwordMatched) {

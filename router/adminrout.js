@@ -8,8 +8,8 @@ import {
   delprod,
   getprodidadm
 } from '../controller/prodcont.js';
-import { adlogin,adlout,getUser } from '../controller/admincont.js';
-import {showcat,addcat,delcat,updcat,userShowCat, getCategoryById} from '../controller/catcont.js'
+import { adlogin,adlout,getUser,toggleUserStatus , getDashboardCounts} from '../controller/admincont.js';
+import {showcat,addcat,delcat,updcat, getCategoryById} from '../controller/catcont.js'
 import { updOrder,delOrder,getadm } from '../controller/ordercont.js';
 
 const adrouter = express.Router();
@@ -44,6 +44,8 @@ adrouter.use((req, res, next) => {
   return res.status(401).json({ success: false, message: 'Admin not logged in' });
 });
 
+adrouter.get("/dashboard-counts", getDashboardCounts);
+
 
 // Product CRUD routes
 adrouter.get('/products', getprodadm);  
@@ -68,6 +70,8 @@ adrouter.put('/categories/:id',updcat)
 adrouter.delete('/categories/:id',delcat)
 
 adrouter.get('/users',getUser)
+
+adrouter.patch('/users/:id/status', toggleUserStatus);
 
 adrouter.get("/logout",adlout)
 

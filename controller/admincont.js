@@ -1,5 +1,9 @@
 import userModel from '../models/usersch.js';
 import adminModel from '../models/adminsch.js'
+import prodModel from '../models/prodsch.js';
+import OrderModel from '../models/ordersch.js';
+import categoryModel from '../models/catsch.js';
+
 import bcrypt from 'bcrypt'
 
 
@@ -40,6 +44,49 @@ const getUser = async (req, res) => {
   }
 }
 
+const toggleUserStatus = async (req, res) => {
+  try {
+    const { status } = req.body; 
+    const userId = req.params.id;
+
+    const updatedUser = await userModel.findByIdAndUpdate(
+      userId,
+      { status },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json({ message: "User status updated", user: updatedUser });
+  } catch (error) {
+    console.error("Error updating user status:", error);
+    res.status(500).json({ message: "Error updating status" });
+  }
+};
+
+ const getDashboardCounts = async (req, res) => {
+  try {
+    const [products, orders, users, categories] = await Promise.all([
+      prodModel.countDocuments(),
+      OrderModel.countDocuments(),
+      userModel.countDocuments(),
+      categoryModel.countDocuments(),
+    ]);
+
+    res.json({
+      products,
+      orders,
+      users,
+      categories,
+    });
+  } catch (error) {
+    console.error("Error fetching dashboard counts:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 const adlout = async (req, res) => {
   req.session.admin = null
   if(req.session.admin === null){
@@ -50,4 +97,4 @@ const adlout = async (req, res) => {
     }
   }
 
-export { adlogin, adlout, getUser }
+export { adlogin, adlout, getUser , toggleUserStatus , getDashboardCounts}
