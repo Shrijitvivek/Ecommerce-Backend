@@ -1,6 +1,6 @@
 import express from 'express'
 import {register,login,editUser,lout,checkAuth} from '../controller/usercont.js'
-import{getproduser,getprodiduser} from '../controller/prodcont.js'
+import{getproduser,getprodiduser , searchProducts} from '../controller/prodcont.js'
 import { userShowCat , getProductsByCategory } from '../controller/catcont.js'
 import { addcart ,Total , editcart , delcart} from '../controller/cartcont.js'
 import { addOrder,getIduser,getsuser } from '../controller/ordercont.js'
@@ -67,5 +67,8 @@ router.post("/orders",addOrder)
 router.get('/orders',getsuser)
 
 router.get('/orders/:id',getIduser)
+ 
+router.get('/search/:query',searchProducts)
+
 
 export default router

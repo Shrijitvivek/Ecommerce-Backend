@@ -116,6 +116,18 @@ const delprod = async (req, res) => {
   }
 }
 
+export const searchProducts = async (req, res) => {
+  try {
+    const q = req.query.q || "";
+    const regex = new RegExp(q, "i"); 
+    const products = await prodModel.find({ ProductName: regex });
+    res.json({ products });
+  } catch (err) {
+    res.status(500).json({ error: "Search failed" });
+  }
+};
+
+
 export {
   addprod,
   getprodadm,
