@@ -43,11 +43,13 @@ app.use('/admin',adrouter)
 app.use('/user',router)
 
 
-
-mongoose.connect(process.env.db_URL).then(()=>{
-    console.log('db connected')
-    
+mongoose.connect(process.env.db_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 })
+.then(() => console.log('DB connected'))
+.catch(err => console.error('MongoDB connection error:', err));
+
 
 app.listen(process.env.PORT,()=>{
     console.log('Server started');

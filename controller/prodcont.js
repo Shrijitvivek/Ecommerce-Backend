@@ -62,6 +62,7 @@ const getproduser = async (req, res) => {
     const products = await prodModel.find();
     res.json({ products });
   } catch (error) {
+     console.error('Fetch products error:', error);
     res.json({ error: "Failed to fetch products" });
   }
 }
