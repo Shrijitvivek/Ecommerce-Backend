@@ -4,54 +4,50 @@ import dotenv from 'dotenv'
 import router from './router/userrout.js'
 import adrouter from './router/adminrout.js'
 import session from 'express-session'
-import MongoStore  from 'connect-mongo'
+import MongoStore from 'connect-mongo'
 import cors from 'cors'
 dotenv.config()
 
 
-const app = express()
-app.use( express.static('prodimg'))
-app.use('/upload' , express.static('upload'))
-app.use(cors({
-    origin: [
+const server = express()
+const app = express.Router();
+
+server.use(cors({
+  origin: [
     "http://16.16.24.28",
     "http://localhost:5173"
   ],
-    credentials:true
- }))
-
-app.use(express.json())
-
-app.use(session({
+  credentials: true
+}))
+server.use(express.json())
+server.use(session({
   secret: 'key',
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: false,        
+    secure: false,
     httpOnly: true,
-    sameSite: 'lax'       
+    sameSite: 'lax'
   },
   store: MongoStore.create({
     mongoUrl: 'mongodb://localhost:27017/BackendEcommerce',
-        collectionName: 'sessions'
-
+    collectionName: 'sessions'
   })
 }))
 
+app.use(express.static('prodimg'))
+app.use('/upload', express.static('upload'))
+app.use('/admin', adrouter)
+app.use('/user', router)
 
-app.use('/admin',adrouter)
-app.use('/user',router)
-
-
-mongoose.connect(process.env.db_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('DB connected'))
-.catch(err => console.error('MongoDB connection error:', err));
+server.use("/api", app)
 
 
-app.listen(process.env.PORT,()=>{
-    console.log('Server started');
-    
+mongoose.connect(process.env.db_URL)
+  .then(() => console.log('DB connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
+
+
+server.listen(process.env.PORT, () => {
+  console.log('Server started');
 })
