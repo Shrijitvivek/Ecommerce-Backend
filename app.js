@@ -35,7 +35,7 @@ server.use(session({
   })
 }))
 
-app.use(express.static('prodimg'))
+app.use('/prodimg',express.static('prodimg'))
 app.use('/upload', express.static('upload'))
 app.use('/admin', adrouter)
 app.use('/user', router)
