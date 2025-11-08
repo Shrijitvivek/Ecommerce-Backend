@@ -89,7 +89,7 @@ export const getsuser = async (req, res) => { // order get user
 };
 
 
-export const getIduser = async (req, res) => {
+export const getIduser = async (req, res) => { 
   try {
     const userId = req.session.user.id;
     const order = await OrderModel.findOne({ _id: req.params.id, UserId: userId });
@@ -102,7 +102,7 @@ export const getIduser = async (req, res) => {
   }
 };
 
-export const updOrder = async (req, res) => {
+export const updOrder = async (req, res) => { // order upd
   try {
     const { deliveryStatus } = req.body;
     const updated = await OrderModel.findByIdAndUpdate(
