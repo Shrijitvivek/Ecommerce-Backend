@@ -59,7 +59,7 @@ const editcart = async (req, res) => { // update cart
     }
 };
 
-const delcart = async (req, res) => {
+const delcart = async (req, res) => { // cart delete
     try {
         const UserId = req.session.user.id;
         const ProductId = req.params.id;
