@@ -25,7 +25,7 @@ const getProductsByCategory = async (req, res) => { // get cgry prod
 
 
 
-const addcat = async (req, res) => {
+const addcat = async (req, res) => { // cgry add
     console.log(req.body);
     try {
         const insert = await categoryModel.insertOne(req.body)
