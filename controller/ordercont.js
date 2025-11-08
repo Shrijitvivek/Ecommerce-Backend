@@ -76,7 +76,7 @@ export const getadm = async (req, res) => { // order get admin
 };
 
 
-export const getsuser = async (req, res) => {
+export const getsuser = async (req, res) => { // order get user
   try {
     const userId = req.session.user.id;
     const orders = await OrderModel.find({ UserId: userId }).sort({createdAt:-1})
