@@ -3,12 +3,12 @@ import productModel from "../models/prodsch.js";
 import OrderModel from "../models/ordersch.js";
 import userModel from "../models/usersch.js";
 
-// CREATE Order
 
 
 
 
-export const addOrder = async (req, res) => {
+
+export const addOrder = async (req, res) => { // orddr add
   try {
     const userId = req.session.user.id;
 
