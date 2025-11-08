@@ -66,7 +66,7 @@ const toggleUserStatus = async (req, res) => { // user status change
   }
 };
 
- const getDashboardCounts = async (req, res) => {
+ const getDashboardCounts = async (req, res) => { //count everything 
   try {
     const [products, orders, users, categories] = await Promise.all([
       prodModel.countDocuments(),
