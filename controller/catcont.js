@@ -37,7 +37,7 @@ const addcat = async (req, res) => { // cgry add
 
 }
 
-const updcat = async (req, res) => {
+const updcat = async (req, res) => { //cgry upd
     try {
         const { name, description } = req.body;
 
