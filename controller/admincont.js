@@ -31,7 +31,7 @@ const adlogin = async (req, res) => { // admin login
   }
 }
 
-const getUser = async (req, res) => {
+const getUser = async (req, res) => { //  get all user
   try {
     const find = await userModel.find()
     res.json({users:find})
