@@ -44,7 +44,7 @@ const getUser = async (req, res) => { //  get all user
   }
 }
 
-const toggleUserStatus = async (req, res) => {
+const toggleUserStatus = async (req, res) => { // user status change
   try {
     const { status } = req.body; 
     const userId = req.params.id;
