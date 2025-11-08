@@ -86,7 +86,7 @@ const delcart = async (req, res) => { // cart delete
     }
 };
 
-const Total = async (req, res) => {
+const Total = async (req, res) => { // get cart total
     try {
         const { id } = req.session.user;
         const UserId = new mongoose.Types.ObjectId(id);
