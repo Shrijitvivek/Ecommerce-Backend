@@ -87,7 +87,7 @@ const toggleUserStatus = async (req, res) => { // user status change
   }
 };
 
-const adlout = async (req, res) => {
+const adlout = async (req, res) => { // admin logout 
   req.session.admin = null
   if(req.session.admin === null){
        res.json({ message: 'Admin logged out ' })
