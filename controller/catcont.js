@@ -13,7 +13,7 @@ const getCategoryById = async (req, res) => { // get each category
     }
 };
 
-const getProductsByCategory = async (req, res) => {
+const getProductsByCategory = async (req, res) => { // get cgry prod
   try {
     const products = await productModel.find({ Category: req.params.id });
     res.json({ products });
