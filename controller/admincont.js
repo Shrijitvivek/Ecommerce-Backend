@@ -8,7 +8,7 @@ import bcrypt from 'bcrypt'
 
 
 
-const adlogin = async (req, res) => {
+const adlogin = async (req, res) => { // admin login
   const { email, password } = req.body;
   const adminFound = await adminModel.findOne({ email });
 
