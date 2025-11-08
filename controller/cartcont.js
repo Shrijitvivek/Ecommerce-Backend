@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import cartModel from "../models/cartsch.js";
 
-const addcart = async (req, res) => {
+const addcart = async (req, res) => { // add to cart
     try {
         const userId = req.session.user.id;
         const { ProductId, Quantity } = req.body;
