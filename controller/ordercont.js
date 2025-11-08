@@ -56,7 +56,7 @@ export const addOrder = async (req, res) => { // orddr add
 
      
 
-export const getadm = async (req, res) => {
+export const getadm = async (req, res) => { // order get admin
   try {
     const orders = await OrderModel.find().sort({ createdAt: -1 }); 
     const ordersWithUsernames = [];
