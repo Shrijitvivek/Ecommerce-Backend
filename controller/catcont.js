@@ -1,7 +1,7 @@
 import categoryModel from "../models/catsch.js"
 import productModel from "../models/prodsch.js";
 
-const getCategoryById = async (req, res) => {
+const getCategoryById = async (req, res) => { // get each category
     try {
         const category = await categoryModel.findById(req.params.id);
         if (!category) {
