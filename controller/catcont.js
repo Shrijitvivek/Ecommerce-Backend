@@ -75,7 +75,7 @@ const delcat = async (req, res) => { // cgry delete
     }
 }
 
-const showcat = async (req, res) => {
+const showcat = async (req, res) => { // get all cgry
     try {
         const all = await categoryModel.find()
         res.json({ categories:all })
