@@ -63,7 +63,7 @@ const updcat = async (req, res) => { //cgry upd
 };
 
 
-const delcat = async (req, res) => {
+const delcat = async (req, res) => { // cgry delete
     try {
         const categoryId = req.params.id
         await categoryModel.deleteOne({ _id: categoryId })
