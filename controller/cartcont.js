@@ -31,7 +31,7 @@ const addcart = async (req, res) => { // add to cart
     }
 };
 
-const editcart = async (req, res) => {
+const editcart = async (req, res) => { // update cart
     try {
         const UserId = req.session.user.id;
         const ProductId = req.params.id;
