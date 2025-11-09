@@ -50,7 +50,7 @@ const login = async (req, res) => { // user login
   }
 }
 
-const editUser = async (req, res) => {
+const editUser = async (req, res) => { // user edit
   try {
     const userId = req.params.id;
     const oldUser = await userModel.findById(userId);
