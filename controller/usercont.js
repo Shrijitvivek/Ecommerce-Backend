@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 
 
 
-const register = async (req, res) => {
+const register = async (req, res) => { // user register
 
   let pic = "";
   if (req.file) {
