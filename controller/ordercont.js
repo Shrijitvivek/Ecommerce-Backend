@@ -120,7 +120,7 @@ export const updOrder = async (req, res) => { // order upd
 };
 
 
-export const delOrder = async (req, res) => {
+export const delOrder = async (req, res) => { // order del
   try {
     const deleted = await OrderModel.findByIdAndDelete(req.params.id);
     if (!deleted) return res.json({ message: "Order not found" });
