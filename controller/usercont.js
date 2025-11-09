@@ -82,7 +82,7 @@ const editUser = async (req, res) => { // user edit
   }
 };
 
-const checkAuth = (req, res) => {
+const checkAuth = (req, res) => { // user auth
   if (req.session && req.session.user) {
     return res.json({ loggedIn: true, user: req.session.user });
   } else {
