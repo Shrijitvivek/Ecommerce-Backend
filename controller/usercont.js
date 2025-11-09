@@ -91,7 +91,7 @@ const checkAuth = (req, res) => { // user auth
 };
 
 
-const lout = async (req, res) => {
+const lout = async (req, res) => { // user logout
   req.session.user = null
   if (req.session.user === null) {
     res.json({ message: 'User logged out ' })
