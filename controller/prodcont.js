@@ -28,7 +28,7 @@ const addprod = async (req, res) => {
     }
 }
 
-// READ 
+// get prod adm
 const getprodadm = async (req, res) => {
   try {
 
