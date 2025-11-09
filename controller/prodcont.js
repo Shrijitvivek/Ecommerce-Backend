@@ -1,6 +1,6 @@
 import prodModel from "../models/prodsch.js";
 
-// CREATE
+// Add prod
 const addprod = async (req, res) => {
   if (req.session.admin)
     try {
