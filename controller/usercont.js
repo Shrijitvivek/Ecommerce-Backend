@@ -20,7 +20,7 @@ const register = async (req, res) => { // user register
   res.json({ message: "User registered succesfully" })
 }
 
-const login = async (req, res) => {
+const login = async (req, res) => { // user login
   const { email, password } = req.body;
   const userFound = await userModel.findOne({ email });
 
