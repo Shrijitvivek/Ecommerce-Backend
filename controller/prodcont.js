@@ -46,7 +46,7 @@ const getprodadm = async (req, res) => {
 }
 
 
-const getprodidadm = async (req, res) => {
+const getprodidadm = async (req, res) => { // get prod by id adm
   try {
     const product = await prodModel.findById(req.params.id)
       .populate('Category', 'name');
@@ -57,7 +57,7 @@ const getprodidadm = async (req, res) => {
   }
 };
 
-const getproduser = async (req, res) => {
+const getproduser = async (req, res) => { // get prod users
   try {
     const products = await prodModel.find();
     res.json({ products });
@@ -67,7 +67,7 @@ const getproduser = async (req, res) => {
   }
 }
 
-const getprodiduser = async (req, res) => {
+const getprodiduser = async (req, res) => { // get prod by id users
   try {
     const product = await prodModel.findById(req.params.id);
     if (!product) return res.json({ error: "Product not found" });
