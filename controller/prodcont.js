@@ -117,7 +117,7 @@ const delprod = async (req, res) => {
   }
 }
 
-export const searchProducts = async (req, res) => {
+export const searchProducts = async (req, res) => { // prod search
   try {
     const q = req.query.q || "";
     const regex = new RegExp(q, "i"); 
