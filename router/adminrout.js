@@ -14,7 +14,7 @@ import { updOrder,delOrder,getadm } from '../controller/ordercont.js';
 
 const adrouter = express.Router();
 
-const storage = multer.diskStorage({
+const storage = multer.diskStorage({ // prodimg upload multer
   destination: function (req, file, callback) {
     callback(null, 'prodimg');
   },
