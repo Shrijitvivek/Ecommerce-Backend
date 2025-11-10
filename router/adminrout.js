@@ -31,7 +31,7 @@ adrouter.post('/login', adlogin);
 
 
 
-adrouter.use((req, res, next) => {
+adrouter.use((req, res, next) => { // auth check middleware
   const openRoutes = ['/login', '/logout'];
   if (openRoutes.includes(req.path)) {
     return next();
