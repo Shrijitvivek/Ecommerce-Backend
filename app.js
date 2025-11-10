@@ -36,7 +36,7 @@ server.use(session({
 }))
 
 app.use('/prodimg',express.static('prodimg')) // prodimg file static serve 
-app.use('/upload', express.static('upload'))
+app.use('/upload', express.static('upload')) // userimg file static serve
 app.use('/admin', adrouter)
 app.use('/user', router)
 
