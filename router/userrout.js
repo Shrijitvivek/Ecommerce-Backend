@@ -39,7 +39,7 @@ router.get('/products/categories/:id',getProductsByCategory)
 
 
 
-router.use((req,res,next)=>{
+router.use((req,res,next)=>{ // user auth midware
   if(req.session.user){
     next()
   }
