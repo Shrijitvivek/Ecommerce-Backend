@@ -13,7 +13,7 @@ async function addCat(){
  db.collection('category').insertOne(category)
     }
     catch(error){
-        console.log(error);
+        console.log(error);    
         
 
         
