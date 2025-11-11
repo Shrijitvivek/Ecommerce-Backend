@@ -71,15 +71,15 @@ adrouter.delete('/categories/:id',delcat)
 
 adrouter.get('/users',getUser)
 
-adrouter.patch('/users/:id/status', toggleUserStatus);
+adrouter.patch('/users/:id/status', toggleUserStatus);                      
 
 adrouter.get("/logout",adlout)
 
 // Order routes
-adrouter.get('/orders',getadm)
+adrouter.get('/orders',getadm)          
 
-adrouter.put('/orders/:id',updOrder)
+adrouter.put('/orders/:id',updOrder)               
 
-adrouter.delete('/ordrs/:id',delOrder)
+adrouter.delete('/ordrs/:id',delOrder)                     
 
 export default adrouter;

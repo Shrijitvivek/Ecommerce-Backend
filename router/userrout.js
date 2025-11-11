@@ -68,7 +68,7 @@ router.get('/orders',getsuser)
 
 router.get('/orders/:id',getIduser)
  
-router.get('/search/:query',searchProducts)
+router.get('/search/:query',searchProducts)              
 
 
-export default router
+export default router                
